@@ -1,0 +1,59 @@
+<!DOCTTYPE HTML>
+<html lang="en-US">
+<head>
+      <meta charset="UTF-8">
+      <Title>HTML5 Geolocation<title>
+      <script tipe="text/javascript" src="http://maps.googleapis.com/maps/api/js?v3"></script>
+</head>
+<body>
+      <h1>Mapa Interactivo</h1>
+      <div id="mapa" style="width:700px;height:500px;">
+          --ACA VA NUESRO MAPA--
+          </div>
+          <script type="text/javascript">
+            navigator.geolocation.getCurrentPosition(fn_ok,fn_error);
+            var divMapa=document.getElementById('mapa')
+            // var divMapa=$('#mapa');
+            function fn_error(){
+                divMapa.innerHTML='Hubo un problema solicitando los datos';
+            }
+            function fn_ok(respuesta){
+                // mostrar_objeto(respuesta.coords);
+                var lat=respuesta.coords.latitude;
+                var lon=respuesta.coords.longitude;
+
+                divMapa.innerHTML=lat+','+lon;
+                //divMapa.innerHTML='Tenemos autorización para ver su ubicación';
+            }
+            //mostrar_objeto();
+
+            function mostrar_objeto (obj){
+                    for(var prop in obj){
+                        document.write(prop+':'+obj[prop]+'br/>');
+                    }
+            }
+
+          //NAMESPACE -->google.maps.ALGO
+          var divMapa=document.getElementById('mapa');
+          navigator.deolocation.getCurrentPosition(fn_ok,fn_mal);
+          function fn_mal(){}
+          function fn_ok (rta){
+              var lat=rta.coords.latitude;
+              var lon=rta.coords.longitude;
+              
+              var glatLon=new google.maps.LatLong(lat,lon);
+              var objConfig ={
+              zoom:17,
+              center:gLatLon
+              }
+              
+              var gMapa=new google.maps.Map(divMapa,objConfig);
+              var objConfigMarker={
+                  position: gLarLon,
+                  map:gMapa
+                  title: "Usted esta aca"
+              var gMarker=new google.maps.Marker(objConfigMarker);
+          
+          </script>
+ </body>
+ </html>
